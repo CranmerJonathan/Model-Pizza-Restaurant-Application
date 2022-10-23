@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Customer.CustomerController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.79998779296875" minWidth="10.0" prefWidth="78.99999389648437" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.3999450683594" minWidth="10.0" prefWidth="347.59998779296876" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80003662109368" minWidth="10.0" prefWidth="174.0000122070312" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="194.39999389648438" minHeight="0.0" prefHeight="77.4000129699707" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="542.4000122070313" minHeight="10.0" prefHeight="431.4" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="91.39997558593745" minHeight="10.0" prefHeight="83.79999999999995" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Text layoutX="113.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun Devil Pizza">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Text layoutX="159.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Home Page" />
+         </children>
+      </Pane>
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="2" text="Employee Sign In" onAction="#employeeSignin" />
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button layoutX="343.0" layoutY="239.0" mnemonicParsing="false" text="View Order" onAction="#viewOrders"/>
+            <Button layoutX="36.0" layoutY="239.0" mnemonicParsing="false" text="Create New Order" onAction="#makeOrders"/>
+            <TextField fx:id="asuID" layoutX="191.0" layoutY="239.0" promptText="ASU ID" />
+            <Text layoutX="16.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Sun Devil Pizza! &#10;&#10;If you are a new customer, create a new order! &#10;&#10;If you are a returning customer, enter your ASU ID to view your order status." />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
