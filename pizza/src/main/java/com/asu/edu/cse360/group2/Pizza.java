@@ -9,7 +9,9 @@ package com.asu.edu.cse360.group2;
 
 // general imports
 import java.util.ArrayList;
+import com.google.gson.*;
 import java.net.URL;
+
 
 public class Pizza {
     // type of pizza
@@ -94,7 +96,7 @@ public class Pizza {
 
     // TODO
     // accepts a file path (URL) and deserializes it and returns a Pizza object
-    public static Pizza deserializeFromJSON(URL url) {
+    public static Pizza deserializeFromJSON(String string) {
         return null;
     }
 }

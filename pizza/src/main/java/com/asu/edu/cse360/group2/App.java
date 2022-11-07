@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.Console;
 import java.io.IOException;
 
 /**
@@ -67,7 +68,11 @@ public class App extends Application {
      * @param args System args
      */
     public static void main(String[] args) {
-        launch();
+        //launch();
+        Pizza p = new Pizza(null, null);
+        
+        System.out.println(Pizza.serializeToJSON(p));
     }
 
+    
 }
