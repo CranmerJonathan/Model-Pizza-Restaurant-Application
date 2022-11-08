@@ -40,8 +40,6 @@ public class PaymentController {
     @FXML
     private TextField addressField;
 
-    @FXML CheckBox addressBox;
-
     @FXML
     public void initialize() {
         // this function is needed to load elements into the table when the view loads
@@ -81,7 +79,7 @@ public class PaymentController {
         AppState.CustomerState.currentUserID = ID;
 
         boolean successTwo = true;
-        if (addressField.getText().length() > 45 || addressField.getText().length() < 5){
+        if (addressField.getText().length() > 45){
             successTwo = false;
         }
         String address = "";
@@ -92,8 +90,6 @@ public class PaymentController {
             alert.show();
             return;
         }
-
-
 
         AppState.CustomerState.currentAddress = address;
 
