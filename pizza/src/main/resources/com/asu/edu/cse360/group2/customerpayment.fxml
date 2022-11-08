@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -44,14 +45,22 @@
                </columns>
             </TableView>
             <Text layoutX="246.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price: " />
+            <Text layoutX="259.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery: " />
+            <Text layoutX="260.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
+            <CheckBox layoutX="308.0" layoutY="274.0" mnemonicParsing="false" />
          </children>
       </Pane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Pay" onAction="#pay" />
+            <Button mnemonicParsing="false" onAction="#pay" prefHeight="25.0" prefWidth="60.0" text="Pay" />
             <Pane prefHeight="55.0" prefWidth="15.0" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancel" onAction="#cancel" />
+            <Button mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="75.0" text="Cancel" />
          </children>
       </HBox>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <TextField layoutX="-29.0" layoutY="300.0" prefHeight="25.0" prefWidth="183.0" promptText="Address" />
+         </children>
+      </Pane>
    </children>
 </GridPane>
