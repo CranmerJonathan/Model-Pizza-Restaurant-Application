@@ -77,6 +77,25 @@ public class PaymentController {
 
         AppState.CustomerState.currentUserID = ID;
 
+        boolean successTwo = true;
+        if (addressField.getText().length() > 45){
+            successTwo = false;
+        }
+        int address = 0;
+        try {
+            address = Integer.parseInt(addressField.getText());
+        } catch (NumberFormatException nfe) {
+            successTwo = false;
+        }
+
+        if (!successTwo) {
+            Alert alert = new Alert(AlertType.ERROR, "Invalid Address");
+            alert.show();
+            return;
+        }
+
+        AppState.CustomerState.currentAddress = address;
+
         // cache order in order database, set app state pizzaList to null
         // this copies by reference, which is fine, because we won't use the old list
         // anymore anyways
