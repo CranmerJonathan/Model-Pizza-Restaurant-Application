@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Alert.AlertType;
 
 public class PaymentController {
@@ -38,6 +39,8 @@ public class PaymentController {
 
     @FXML
     private TextField addressField;
+
+    @FXML CheckBox addressBox;
 
     @FXML
     public void initialize() {
@@ -78,15 +81,11 @@ public class PaymentController {
         AppState.CustomerState.currentUserID = ID;
 
         boolean successTwo = true;
-        if (addressField.getText().length() > 45 || addressField.getText().length() < 10){
+        if (addressField.getText().length() > 45 || addressField.getText().length() < 5){
             successTwo = false;
         }
-        int address = 0;
-        try {
-            address = Integer.parseInt(addressField.getText());
-        } catch (NumberFormatException nfe) {
-            successTwo = false;
-        }
+        String address = "";
+        address = addressField.getText();
 
         if (!successTwo) {
             Alert alert = new Alert(AlertType.ERROR, "Invalid Address");
