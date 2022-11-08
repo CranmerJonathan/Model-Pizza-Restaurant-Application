@@ -42,6 +42,7 @@ public class AppState {
     static public class CustomerState {
         public static int currentUserID;
         public static ObservableList<Pizza> pizzaList;
+        public static int currentAddress;
     }
 
     // chef state
