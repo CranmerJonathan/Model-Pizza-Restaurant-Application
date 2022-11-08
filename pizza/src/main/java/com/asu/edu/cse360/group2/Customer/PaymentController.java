@@ -41,6 +41,9 @@ public class PaymentController {
     private TextField addressField;
 
     @FXML
+    private CheckBox addressBox;
+
+    @FXML
     public void initialize() {
         // this function is needed to load elements into the table when the view loads
         pizzaColumn.setCellValueFactory(new PropertyValueFactory<Pizza, String>("name"));
@@ -59,6 +62,14 @@ public class PaymentController {
 
     @FXML
     public void pay() throws IOException {
+        /*if (addressBox.isSelected() == false)     needs to be fixed
+        {
+            addressField.setEditable(false);
+        }
+        else {
+            addressField.setEditable(true);
+        }
+        */
         boolean success = true;
         if (asuField.getText().length() != 10) {
             success = false;
@@ -77,6 +88,7 @@ public class PaymentController {
         }
 
         AppState.CustomerState.currentUserID = ID;
+
 
         boolean successTwo = true;
         if (addressField.getText().length() > 45){
