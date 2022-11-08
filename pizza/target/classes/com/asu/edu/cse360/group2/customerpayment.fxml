@@ -48,7 +48,7 @@
             <Text layoutX="239.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery: " />
             <Text layoutX="241.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
             <CheckBox layoutX="287.0" layoutY="90.0" mnemonicParsing="false" />
-            <TextField layoutX="287.0" layoutY="111.0" prefHeight="25.0" prefWidth="171.0" promptText="Address" />
+            <TextField fx:id="addressField" layoutX="287.0" layoutY="111.0" prefHeight="25.0" prefWidth="171.0" promptText="Address" />
          </children>
       </Pane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">

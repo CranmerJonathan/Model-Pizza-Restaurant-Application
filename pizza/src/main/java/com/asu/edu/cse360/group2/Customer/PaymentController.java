@@ -37,6 +37,9 @@ public class PaymentController {
     private TextField asuField;
 
     @FXML
+    private TextField addressField;
+
+    @FXML
     public void initialize() {
         // this function is needed to load elements into the table when the view loads
         pizzaColumn.setCellValueFactory(new PropertyValueFactory<Pizza, String>("name"));
