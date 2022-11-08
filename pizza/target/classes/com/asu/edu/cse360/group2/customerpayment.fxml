@@ -16,8 +16,8 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Customer.PaymentController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.79998779296875" minWidth="10.0" prefWidth="78.99999389648437" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.3999450683594" minWidth="10.0" prefWidth="338.4000244140625" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80003662109368" minWidth="10.0" prefWidth="183.59997558593756" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.3999450683594" minWidth="10.0" prefWidth="366.40001220703124" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80003662109368" minWidth="10.0" prefWidth="155.99998779296868" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="194.39999389648438" minHeight="0.0" prefHeight="77.4000129699707" vgrow="SOMETIMES" />
@@ -45,9 +45,10 @@
                </columns>
             </TableView>
             <Text layoutX="246.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price: " />
-            <Text layoutX="259.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery: " />
-            <Text layoutX="260.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
-            <CheckBox layoutX="308.0" layoutY="274.0" mnemonicParsing="false" />
+            <Text layoutX="239.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery: " />
+            <Text layoutX="241.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
+            <CheckBox layoutX="287.0" layoutY="90.0" mnemonicParsing="false" />
+            <TextField layoutX="287.0" layoutY="111.0" prefHeight="25.0" prefWidth="171.0" promptText="Address" />
          </children>
       </Pane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -57,10 +58,5 @@
             <Button mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="75.0" text="Cancel" />
          </children>
       </HBox>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <TextField layoutX="-29.0" layoutY="300.0" prefHeight="25.0" prefWidth="183.0" promptText="Address" />
-         </children>
-      </Pane>
    </children>
 </GridPane>
