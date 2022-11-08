@@ -78,7 +78,7 @@ public class PaymentController {
         AppState.CustomerState.currentUserID = ID;
 
         boolean successTwo = true;
-        if (addressField.getText().length() > 45){
+        if (addressField.getText().length() > 45 || addressField.getText().length() < 10){
             successTwo = false;
         }
         int address = 0;
