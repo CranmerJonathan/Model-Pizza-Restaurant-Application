@@ -93,6 +93,8 @@ public class PaymentController {
             return;
         }
 
+
+
         AppState.CustomerState.currentAddress = address;
 
         // cache order in order database, set app state pizzaList to null
