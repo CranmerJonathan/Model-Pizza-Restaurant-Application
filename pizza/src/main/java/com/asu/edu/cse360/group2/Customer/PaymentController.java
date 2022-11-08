@@ -54,6 +54,19 @@ public class PaymentController {
         });
     }
 
+    /*@FXML
+    public void addressAccess() {
+        if (addressBox.isSelected() == false)       unfinished
+        {
+            addressField.setEditable(false);
+        }
+        else {
+            addressField.setEditable(true);
+        }
+        
+    }
+    */
+
     @FXML
     public void cancel() throws IOException {
         // return to order page
@@ -62,14 +75,6 @@ public class PaymentController {
 
     @FXML
     public void pay() throws IOException {
-        /*if (addressBox.isSelected() == false)     needs to be fixed
-        {
-            addressField.setEditable(false);
-        }
-        else {
-            addressField.setEditable(true);
-        }
-        */
         boolean success = true;
         if (asuField.getText().length() != 10) {
             success = false;
