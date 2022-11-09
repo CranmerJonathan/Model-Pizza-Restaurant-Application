@@ -115,7 +115,7 @@ public class PaymentController {
         // cache order in order database, set app state pizzaList to null
         // this copies by reference, which is fine, because we won't use the old list
         // anymore anyways
-        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID);
+        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID, AppState.CustomerState.currentAddress);
         if (AppState.orders.get(ID) == null) {
             ArrayList<Order> orders = new ArrayList<Order>();
             orders.add(order);
