@@ -36,11 +36,11 @@ public class Order {
     public String getName() {
         return "Order " + orderNumber;
     }
-
+    // used to get orderNumber in chef controller 
     public int getOrderNumber() {
         return orderNumber;
     }
-
+    // used to get pizza array in chef controller 
     public List<Pizza> getPizzas() {
         return pizzas;
     }
@@ -77,9 +77,10 @@ public class Order {
         this.state = state;
     }
 
+    // neccessary to change an existing orders pizzas
     public void setPizzas(List<Pizza> pizzas)
     {
-        this.pizzas = pizzas;
+        this.pizzas = pizzas; 
     }
     // get estimated time for completion
     // TODO

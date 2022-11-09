@@ -64,7 +64,7 @@ public class ChefController {
     private TableColumn<Order, String> ordersColumn;
 
     @FXML
-    private TableView<Pizza> pizzas; // add in table view in chef.fxml
+    private TableView<Pizza> pizzas;
 
     @FXML
     private TableColumn<Pizza, String> pizzaColumn;
@@ -152,14 +152,9 @@ public class ChefController {
                 pizzas.getItems().clear();
                 pizzaList = pizzas.getItems();
             }
-            System.out.print("chef controller - pizzaList: ");
-            System.out.println(pizzaList);
-
-            for(int i = 0; i < pizzaList.size(); i++){
-                System.out.println(pizzaList.get(i).getName() + pizzaList.get(i).getToppings());
-            }
 
             pizzaColumn.setCellValueFactory(new PropertyValueFactory<Pizza, String>("name"));
+
         });
 
         pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
@@ -170,7 +165,6 @@ public class ChefController {
         
     @FXML
     public void createPizza() {
-        //System.out.println("in createOrder");
         // Create the custom dialog.
         Dialog<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> dialog = new Dialog<>();
         dialog.setTitle("Create Order");
@@ -254,24 +248,34 @@ public class ChefController {
 
 
         Optional<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> result = dialog.showAndWait();
-        System.out.println("we got the result");
         result.ifPresent(pair -> {
+
+            //add pizza to local list of pizzas based on already selected order
             pizzaList.add(new Pizza(pair.getKey(), pair.getValue()));
+
+            //set selected order pizzas to new list of pizzas
             selectedOrder.setPizzas(pizzaList);
+
+            //create new order object to replace exisiting order in state hashmap with put()
             ArrayList<Order> orders = new ArrayList<Order>();
+
+            //add updated order to local order tableview data (orders)
             orders.add(selectedOrder);
+
+            //update list of pizzas in local pizza tableview data (pizzas)
+            pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
+
+            //update Appstate approvedOrders hash table
             AppState.approvedOrders.put(selectedOrder.getUserID(), orders);
 
+            //refresh table column with current list of pizza objects
             pizzas.refresh();
-            System.out.println("Adding result");
         });
     }
     
 
     @FXML
     public void editPizza() {
-        System.out.println("in editPizza");
-
         if (selectedOrder == null) {
             Alert alert = new Alert(AlertType.ERROR, "No order selected");
             alert.show();
@@ -391,15 +395,20 @@ public class ChefController {
         Optional<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> result = dialog.showAndWait();
 
         result.ifPresent(pair -> {
-            selectedPizza.setType(pair.getKey());
-            selectedPizza.setToppings(pair.getValue());
-            pizzaList.add(new Pizza(null, null));
-            pizzaList.remove(pizzaList.size() - 1);
-            updatePizzaText(selectedPizza, selectedPizza);
+            pizzaList.add(new Pizza(pair.getKey(), pair.getValue()));
+            selectedOrder.setPizzas(pizzaList);
+            ArrayList<Order> orders = new ArrayList<Order>();
+            orders.add(selectedOrder);
+            pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
+            AppState.approvedOrders.put(selectedOrder.getUserID(), orders);
+            
+            int editedPizzaIndex = pizzaList.indexOf(selectedPizza);
+            pizzaList.remove(editedPizzaIndex);
+
+            pizzas.refresh();
         });
     }
     
-
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
