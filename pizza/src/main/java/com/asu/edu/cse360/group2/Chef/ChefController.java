@@ -81,7 +81,6 @@ public class ChefController {
 
         String orderString = newSelection.getName();
 
-
         orderName.setText(orderString);
 
         selectedOrder = newSelection;
@@ -143,31 +142,34 @@ public class ChefController {
         orders.setItems(FXCollections.observableList(orderList));
 
         orders.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
+
             selectedOrder = newSelection;
+
             if (selectedOrder.getPizzas() != null) {
                 pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
-                pizzaList = AppState.CustomerState.pizzaList;
+                pizzaList = FXCollections.observableList(selectedOrder.getPizzas());
             } else {
                 pizzas.getItems().clear();
                 pizzaList = pizzas.getItems();
-            }           
+            }
+            System.out.print("chef controller - pizzaList: ");
+            System.out.println(pizzaList);
+
+            for(int i = 0; i < pizzaList.size(); i++){
+                System.out.println(pizzaList.get(i).getName() + pizzaList.get(i).getToppings());
+            }
+
+            pizzaColumn.setCellValueFactory(new PropertyValueFactory<Pizza, String>("name"));
         });
- /* 
-        if (AppState.ChefState.orderList.get(selectedOrder.getOrderNumber()).getPizzas() != null) {
-            pizzas.setItems(FXCollections.observableList(AppState.ChefState.orderList.get(selectedOrder.getOrderNumber()).getPizzas()));
-            pizzaList = AppState.CustomerState.pizzaList;
-        } else {
-            pizzas.getItems().clear();
-            pizzaList = pizzas.getItems();
-        }
-*/
-        // pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
-        //     updateText(oldSelection, newSelection);
-        // });
+
+        pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
+
+            selectedPizza = newSelection;
+        });
     }
         
     @FXML
-    public void createOrder() {
+    public void createPizza() {
         //System.out.println("in createOrder");
         // Create the custom dialog.
         Dialog<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> dialog = new Dialog<>();
@@ -252,17 +254,23 @@ public class ChefController {
 
 
         Optional<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> result = dialog.showAndWait();
-        //System.out.println("we got the result");
+        System.out.println("we got the result");
         result.ifPresent(pair -> {
             pizzaList.add(new Pizza(pair.getKey(), pair.getValue()));
-            //System.out.println("Adding result");
+            selectedOrder.setPizzas(pizzaList);
+            ArrayList<Order> orders = new ArrayList<Order>();
+            orders.add(selectedOrder);
+            AppState.approvedOrders.put(selectedOrder.getUserID(), orders);
+
+            pizzas.refresh();
+            System.out.println("Adding result");
         });
     }
     
 
     @FXML
-    public void editOrder() {
-        //System.out.println("in editOrder");
+    public void editPizza() {
+        System.out.println("in editPizza");
 
         if (selectedOrder == null) {
             Alert alert = new Alert(AlertType.ERROR, "No order selected");

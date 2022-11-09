@@ -53,11 +53,11 @@
             </VBox>
             <Pane prefHeight="445.0" prefWidth="224.0">
                <children>
-                  <Button layoutX="77.0" layoutY="331.0" mnemonicParsing="false" onAction="#editOrder" text="Edit Order" />
-                  <Button layoutX="67.0" layoutY="373.0" mnemonicParsing="false" onAction="#createOrder" text="Create Orders" />
+                  <Button layoutX="77.0" layoutY="331.0" mnemonicParsing="false" onAction="#editPizza" text="Edit Pizza" />
+                  <Button layoutX="67.0" layoutY="373.0" mnemonicParsing="false" onAction="#createPizza" text="Create Pizza" />
                   <TableView fx:id="pizzas" layoutX="12.0" prefHeight="306.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="198.80000591278076" text="Pizzas" />
+                      <TableColumn fx:id="pizzaColumn" prefWidth="198.80000591278076" text="Pizzas" />
                     </columns>
                   </TableView>
                </children>

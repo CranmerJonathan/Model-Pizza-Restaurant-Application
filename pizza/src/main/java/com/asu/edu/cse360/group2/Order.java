@@ -77,6 +77,10 @@ public class Order {
         this.state = state;
     }
 
+    public void setPizzas(List<Pizza> pizzas)
+    {
+        this.pizzas = pizzas;
+    }
     // get estimated time for completion
     // TODO
     // update this correctly
