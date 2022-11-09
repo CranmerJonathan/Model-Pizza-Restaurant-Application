@@ -52,6 +52,8 @@ public class PaymentController {
         pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
             // run on table element selection
         });
+
+        addressField.setEditable(false);
     }
 
     @FXML
