@@ -47,7 +47,7 @@
             <Text layoutX="246.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price: " />
             <Text layoutX="239.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery: " />
             <Text layoutX="241.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
-            <CheckBox fx:id="addressBox" layoutX="287.0" layoutY="90.0" mnemonicParsing="false" />
+            <CheckBox fx:id="addressBox" layoutX="287.0" layoutY="90.0" mnemonicParsing="false" onAction="#addressAccess" />
             <TextField fx:id="addressField" layoutX="287.0" layoutY="111.0" prefHeight="25.0" prefWidth="171.0" promptText="Address" />
          </children>
       </Pane>
