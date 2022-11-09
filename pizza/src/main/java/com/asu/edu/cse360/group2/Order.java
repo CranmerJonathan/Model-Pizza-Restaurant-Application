@@ -37,6 +37,14 @@ public class Order {
         return "Order " + orderNumber;
     }
 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
     // gets progress of order (managed by chef/delivery classes)
     public double getProgress() {
         return progress;
