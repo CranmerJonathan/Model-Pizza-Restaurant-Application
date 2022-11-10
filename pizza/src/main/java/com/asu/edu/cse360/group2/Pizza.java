@@ -8,6 +8,8 @@
 package com.asu.edu.cse360.group2;
 
 // general imports
+
+
 import java.util.ArrayList;
 import com.google.gson.*;
 import java.net.URL;
@@ -91,7 +93,11 @@ public class Pizza {
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
     public static String serializeToJSON(Pizza pizza) {
-        return null;
+        Gson gson = new Gson();
+        String p = gson.toJson(pizza);
+        
+        
+        return p;   
     }
 
     // TODO

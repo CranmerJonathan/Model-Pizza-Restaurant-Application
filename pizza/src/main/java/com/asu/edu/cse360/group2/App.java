@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 
 import java.io.Console;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import com.asu.edu.cse360.group2.Pizza.Toppings;
+import com.asu.edu.cse360.group2.Pizza.Types;
 
 /**
  * JavaFX App
@@ -68,9 +72,10 @@ public class App extends Application {
      * @param args System args
      */
     public static void main(String[] args) {
-        //launch();
-        Pizza p = new Pizza(null, null);
-        
+        launch();
+        ArrayList<Toppings> list = new ArrayList<>();
+        list.add(Toppings.EXTRA_CHEESE);
+        Pizza p = new Pizza(Types.CHEESE, list);
         System.out.println(Pizza.serializeToJSON(p));
     }
 
