@@ -50,6 +50,32 @@ public class ChefController {
         orders.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
             selectedOrder = newSelection;
         });
+
+        selectedOrder.setState(1);
+    }
+
+    @FXML
+    private void nextStage() {
+        int ID = selectedOrder.getUserID();
+        selectedOrder.setState(3);
+        if (AppState.bakedOrders.get(ID) == null) {
+            ArrayList<Order> orders = new ArrayList<Order>();
+            orders.add(selectedOrder);
+            AppState.bakedOrders.put(ID, orders);
+        } else {
+            ArrayList<Order> orders = AppState.bakedOrders.get(ID);
+            orders.add(selectedOrder);
+        }
+
+        ArrayList<Order> newOrderForIDList = AppState.newOrders.get(selectedOrder.getUserID());
+        newOrderForIDList.remove(selectedOrder);
+        orders.getItems().remove(selectedOrder); // updates table
+    }
+
+    @FXML
+    private void doneStage() {
+        int ID = selectedOrder.getUserID();
+        selectedOrder.setState();
     }
 
     @FXML

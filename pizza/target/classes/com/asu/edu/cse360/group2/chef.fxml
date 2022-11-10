@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.asu.edu.cse360.group2.Chef.ChefController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Chef.ChefController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.5999755859375" minWidth="10.0" prefWidth="53.99999237060547" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.9999816894531" minWidth="10.0" prefWidth="433.9999816894531" />
@@ -55,10 +55,12 @@
                <children>
                   <Button layoutX="74.0" layoutY="146.0" mnemonicParsing="false" text="Edit Orders" />
                   <Button layoutX="67.0" layoutY="188.0" mnemonicParsing="false" text="Create Orders" />
+                  <Button layoutX="86.0" layoutY="280.0" mnemonicParsing="false" onAction="#nextStage" text="Baking" />
+                  <Button layoutX="89.0" layoutY="323.0" mnemonicParsing="false" onAction="#doneStage" text="Done" />
                </children>
             </Pane>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#logout"/>
+      <Button mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>
