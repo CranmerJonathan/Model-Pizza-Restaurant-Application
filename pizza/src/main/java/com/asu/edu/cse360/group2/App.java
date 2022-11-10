@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import com.google.gson.*;
 import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,12 +73,19 @@ public class App extends Application {
      * @param args System args
      */
     public static void main(String[] args) {
-        launch();
-        ArrayList<Toppings> list = new ArrayList<>();
-        list.add(Toppings.EXTRA_CHEESE);
-        Pizza p = new Pizza(Types.CHEESE, list);
-        System.out.println(Pizza.serializeToJSON(p));
+        //launch();
+        Test t = new Test( 
+        "Norman", 
+        "norman@futurestud.io", 
+        26, 
+        true);
+        Gson g = new Gson();
+        String uJson = g.toJson(t);
+        System.out.println(uJson);
+
+
     }
+ 
 
     
 }
