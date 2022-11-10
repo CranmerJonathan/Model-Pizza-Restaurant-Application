@@ -51,11 +51,10 @@ public class ChefController {
             selectedOrder = newSelection;
         });
 
-        selectedOrder.setState(1);
     }
 
     @FXML
-    private void nextStage() {
+    private void bakedStage() {
         int ID = selectedOrder.getUserID();
         selectedOrder.setState(3);
         if (AppState.bakedOrders.get(ID) == null) {
@@ -66,16 +65,24 @@ public class ChefController {
             ArrayList<Order> orders = AppState.bakedOrders.get(ID);
             orders.add(selectedOrder);
         }
-
-        ArrayList<Order> newOrderForIDList = AppState.newOrders.get(selectedOrder.getUserID());
-        newOrderForIDList.remove(selectedOrder);
-        orders.getItems().remove(selectedOrder); // updates table
     }
 
     @FXML
     private void doneStage() {
         int ID = selectedOrder.getUserID();
-        selectedOrder.setState();
+        selectedOrder.setState(4);
+        if (AppState.doneOrders.get(ID) == null) {
+            ArrayList<Order> orders = new ArrayList<Order>();
+            orders.add(selectedOrder);
+            AppState.doneOrders.put(ID, orders);
+        } else {
+            ArrayList<Order> orders = AppState.doneOrders.get(ID);
+            orders.add(selectedOrder);
+        }
+
+        ArrayList<Order> newOrderForIDList = AppState.doneOrders.get(selectedOrder.getUserID());
+        newOrderForIDList.remove(selectedOrder);
+        orders.getItems().remove(selectedOrder); // updates table
     }
 
     @FXML

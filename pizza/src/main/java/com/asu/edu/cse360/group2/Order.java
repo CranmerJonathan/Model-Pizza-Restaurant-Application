@@ -61,8 +61,10 @@ public class Order {
                 return "Disapproved";
             case 3:
                 return "Baking";
+            case 4:
+                return "Done";
             default:
-                return "Done"; 
+                return "Delivered"; 
         }
     }
 
