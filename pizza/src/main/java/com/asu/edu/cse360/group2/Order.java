@@ -5,28 +5,27 @@
  * @version 1.0
  */
 
-package com.asu.edu.cse360.group2;
-
 // application state
-import com.asu.edu.cse360.group2.AppState;
 
 // general imports
 import java.util.List;
 import java.net.URL;
 
 public class Order {
-    private List<Pizza> pizzas;
+	private List<Pizza> pizzas;
     private int orderNumber;
     private double progress;
     private int userID;
+    private static int orNumber = 0;
+    
 
     // TODO
     // define int-state mapping table
     private int state = 0;
 
     public Order(List<Pizza> pizzas, int userID) {
-        AppState.orderNumber += 1;
-        orderNumber = AppState.orderNumber;
+        orNumber += 1;
+        orderNumber = orNumber;
         this.pizzas = pizzas;
         this.progress = 0;
         this.userID = userID;
@@ -93,5 +92,18 @@ public class Order {
     // accepts a file path (URL) and deserializes it and returns an Order object
     public static Order deserializeFromJSON(URL url) {
         return null;
+    }
+    
+    //ADDED FUCTIONSKAJYWGDHBIUAHJWGDVBIAUKWJ<DHBKAJWDBHAKJWDN
+    public int getOrderNumber() {
+    	return orderNumber;
+    }
+    
+    public List<Pizza> getPizzas(){
+    	return pizzas;
+    }
+    
+    public int getStateNumber() {
+    	return state;
     }
 }
