@@ -96,7 +96,6 @@ public class Pizza {
         Gson gson = new Gson();
         String p = gson.toJson(pizza);
         
-        
         return p;   
     }
 
