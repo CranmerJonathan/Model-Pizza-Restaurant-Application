@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Customer.PaymentController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.79998779296875" minWidth="10.0" prefWidth="78.99999389648437" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.3999450683594" minWidth="10.0" prefWidth="338.4000244140625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80003662109368" minWidth="10.0" prefWidth="183.59997558593756" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="194.39999389648438" minHeight="0.0" prefHeight="77.4000129699707" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="542.4000122070313" minHeight="10.0" prefHeight="431.4" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="91.39997558593745" minHeight="10.0" prefHeight="83.79999999999995" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Text layoutX="113.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun Devil Pizza">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Text layoutX="149.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Checkout Page" />
+         </children>
+      </Pane>
+      <Pane prefHeight="434.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Text layoutX="241.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment ID: " />
+            <TextField fx:id="asuField" layoutX="307.0" layoutY="204.0" promptText="ASU ID" />
+            <TableView fx:id="pizzas" prefHeight="434.0" prefWidth="212.0">
+               <columns>
+                  <TableColumn fx:id="pizzaColumn" prefWidth="212.00000150203704" text="Order Summary" />
+               </columns>
+            </TableView>
+            <Text layoutX="246.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price: " />
+         </children>
+      </Pane>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Pay" onAction="#pay" />
+            <Pane prefHeight="55.0" prefWidth="15.0" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancel" onAction="#cancel" />
+         </children>
+      </HBox>
+   </children>
+</GridPane>
