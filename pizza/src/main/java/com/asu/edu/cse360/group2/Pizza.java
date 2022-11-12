@@ -13,7 +13,8 @@ package com.asu.edu.cse360.group2;
 import java.util.ArrayList;
 import com.google.gson.*;
 import java.net.URL;
-
+import java.io.FileOutputStream;
+import java.io.Serializable;;
 
 public class Pizza {
     // type of pizza
@@ -93,10 +94,7 @@ public class Pizza {
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
     public static String serializeToJSON(Pizza pizza) {
-        Gson gson = new Gson();
-        String p = gson.toJson(pizza);
-        
-        return p;   
+        FileOutputStream fileOut = new FileOutputStream("CSE-360-Final-Project-Repository\\pizza\\src\\main\\resources\\com\\asu\\edu\\cse360\\group2")
     }
 
     // TODO

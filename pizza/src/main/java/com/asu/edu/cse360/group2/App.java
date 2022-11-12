@@ -72,20 +72,15 @@ public class App extends Application {
      * 
      * @param args System args
      */
-    public static void main(String[] args) {
-        //launch();
-        Test t = new Test( 
-        "Norman", 
-        "norman@futurestud.io", 
-        26, 
-        true);
-        Gson g = new Gson();
-        String uJson = g.toJson(t);
-        System.out.println(uJson);
+    
+        public static void main(String[] args) {
+        launch();
+        
 
 
     }
- 
+  
+
 
     
 }
