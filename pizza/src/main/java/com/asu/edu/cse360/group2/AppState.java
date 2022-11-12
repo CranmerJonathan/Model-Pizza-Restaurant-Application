@@ -35,6 +35,12 @@ public class AppState {
     // this stores all orders ready for delivery (managed by the delivery driver)
     public static Hashtable<Integer, ArrayList<Order>> deliverableOrders = new Hashtable<Integer, ArrayList<Order>>();
 
+    // this stores all orders that are being baked (managed by the chef)
+    public static Hashtable<Integer, ArrayList<Order>> bakedOrders = new Hashtable<Integer, ArrayList<Order>>();
+
+    //this stores all orders that are done being baked (managed by the chef)
+    public static Hashtable<Integer, ArrayList<Order>> doneOrders = new Hashtable<Integer, ArrayList<Order>>();
+
     // order number
     public static int orderNumber = 0;
 
