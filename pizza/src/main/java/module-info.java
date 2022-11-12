@@ -1,6 +1,7 @@
 module com.asu.edu.cse360.group2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
 
     opens com.asu.edu.cse360.group2 to javafx.fxml;
     opens com.asu.edu.cse360.group2.Chef to javafx.fxml;

@@ -5,35 +5,49 @@
  * @version 1.0
  */
 
+package com.asu.edu.cse360.group2;
+
 // application state
+import com.asu.edu.cse360.group2.AppState;
 
 // general imports
 import java.util.List;
 import java.net.URL;
 
 public class Order {
-	private List<Pizza> pizzas;
+    private List<Pizza> pizzas;
     private int orderNumber;
     private double progress;
     private int userID;
-    private static int orNumber = 0;
-    
+    private String userAddress;
 
     // TODO
     // define int-state mapping table
     private int state = 0;
 
-    public Order(List<Pizza> pizzas, int userID) {
-        orNumber += 1;
-        orderNumber = orNumber;
+    public Order(List<Pizza> pizzas, int userID, String userAddress) {
+        AppState.orderNumber += 1;
+        orderNumber = AppState.orderNumber;
         this.pizzas = pizzas;
         this.progress = 0;
         this.userID = userID;
+        this.userAddress = userAddress;
+
     }
 
     // utility functions for table view
     public String getName() {
         return "Order " + orderNumber;
+    }
+
+    // used to get orderNumber in chef controller
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    // used to get pizza array in chef controller
+    public List<Pizza> getPizzas() {
+        return pizzas;
     }
 
     // gets progress of order (managed by chef/delivery classes)
@@ -44,6 +58,14 @@ public class Order {
     // gets user ID associated with order
     public int getUserID() {
         return userID;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public int getStateNumber() {
+        return state;
     }
 
     // gets state of order
@@ -58,14 +80,23 @@ public class Order {
                 return "Approved";
             case 2:
                 return "Disapproved";
-            default:
+            case 3:
+                return "Baking";
+            case 4:
                 return "Done";
+            default:
+                return "Delivered";
         }
     }
 
     // sets state of order
     public void setState(int state) {
         this.state = state;
+    }
+
+    // neccessary to change an existing orders pizzas
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 
     // get estimated time for completion
@@ -92,18 +123,5 @@ public class Order {
     // accepts a file path (URL) and deserializes it and returns an Order object
     public static Order deserializeFromJSON(URL url) {
         return null;
-    }
-    
-    //ADDED FUCTIONSKAJYWGDHBIUAHJWGDVBIAUKWJ<DHBKAJWDBHAKJWDN
-    public int getOrderNumber() {
-    	return orderNumber;
-    }
-    
-    public List<Pizza> getPizzas(){
-    	return pizzas;
-    }
-    
-    public int getStateNumber() {
-    	return state;
     }
 }

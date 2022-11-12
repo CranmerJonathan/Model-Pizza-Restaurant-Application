@@ -58,6 +58,7 @@ public class OrdersController {
     private TableColumn<Pizza, String> pizzaColumn;
 
     public void updateText(Pizza oldSelection, Pizza newSelection) {
+        
         if (newSelection == null) {
             pizzaID.setText("");
             pizzaType.setText("");
