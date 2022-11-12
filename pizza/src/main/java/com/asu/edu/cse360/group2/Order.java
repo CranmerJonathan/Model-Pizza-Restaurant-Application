@@ -19,22 +19,33 @@ public class Order {
     private int orderNumber;
     private double progress;
     private int userID;
+    private String userAddress;
 
     // TODO
     // define int-state mapping table
     private int state = 0;
 
-    public Order(List<Pizza> pizzas, int userID) {
+    public Order(List<Pizza> pizzas, int userID, String userAddress) {
         AppState.orderNumber += 1;
         orderNumber = AppState.orderNumber;
         this.pizzas = pizzas;
         this.progress = 0;
         this.userID = userID;
+        this.userAddress = userAddress;
+
     }
 
     // utility functions for table view
     public String getName() {
         return "Order " + orderNumber;
+    }
+    // used to get orderNumber in chef controller 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+    // used to get pizza array in chef controller 
+    public List<Pizza> getPizzas() {
+        return pizzas;
     }
 
     // gets progress of order (managed by chef/delivery classes)
@@ -45,6 +56,10 @@ public class Order {
     // gets user ID associated with order
     public int getUserID() {
         return userID;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
     }
 
     // gets state of order
@@ -73,6 +88,11 @@ public class Order {
         this.state = state;
     }
 
+    // neccessary to change an existing orders pizzas
+    public void setPizzas(List<Pizza> pizzas)
+    {
+        this.pizzas = pizzas; 
+    }
     // get estimated time for completion
     // TODO
     // update this correctly

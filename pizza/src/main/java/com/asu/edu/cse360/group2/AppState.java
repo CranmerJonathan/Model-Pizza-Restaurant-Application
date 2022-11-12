@@ -48,11 +48,13 @@ public class AppState {
     static public class CustomerState {
         public static int currentUserID;
         public static ObservableList<Pizza> pizzaList;
+        public static String currentAddress;
     }
 
     // chef state
     static public class ChefState {
-
+        public static int currentOrderId;
+        public static ObservableList<Order> orderList;
     }
 
     // delivery driver state
