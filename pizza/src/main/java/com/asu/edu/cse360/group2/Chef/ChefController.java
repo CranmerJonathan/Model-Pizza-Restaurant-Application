@@ -318,6 +318,12 @@ public class ChefController {
             return;
         }
 
+        if (selectedPizza == null) {
+            Alert alert = new Alert(AlertType.ERROR, "No pizza selected");
+            alert.show();
+            return;
+        }
+
         // Create the custom dialog.
         Dialog<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> dialog = new Dialog<>();
         dialog.setTitle("Edit Pizza");
@@ -443,6 +449,8 @@ public class ChefController {
 
             pizzas.refresh();
         });
+
+        selectedPizza = null;
     }
 
     @FXML
