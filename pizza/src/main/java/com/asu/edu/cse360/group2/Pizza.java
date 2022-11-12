@@ -11,12 +11,18 @@ package com.asu.edu.cse360.group2;
 
 
 import java.util.ArrayList;
-import com.google.gson.*;
-import java.net.URL;
-import java.io.FileOutputStream;
-import java.io.Serializable;;
 
-public class Pizza {
+
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.net.URL;
+
+
+public class Pizza implements Serializable{
     // type of pizza
     public static enum Types {
         PEPPERONI, SAUSAGE, CHEESE
@@ -93,8 +99,11 @@ public class Pizza {
 
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
-    public static String serializeToJSON(Pizza pizza) {
-        FileOutputStream fileOut = new FileOutputStream("CSE-360-Final-Project-Repository\\pizza\\src\\main\\resources\\com\\asu\\edu\\cse360\\group2")
+    public static String serialization(Pizza pizza) {
+        Gson gson = new Gson();
+        String p = gson.toJson(pizza);
+        
+        return p;   
     }
 
     // TODO
@@ -102,4 +111,6 @@ public class Pizza {
     public static Pizza deserializeFromJSON(String string) {
         return null;
     }
+
+    
 }

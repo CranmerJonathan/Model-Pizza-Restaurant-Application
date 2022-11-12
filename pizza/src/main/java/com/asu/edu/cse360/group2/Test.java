@@ -9,10 +9,11 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 
 
-public class Test {
+public class Test implements Serializable {
     String name;
     String email;
     int age;
@@ -22,6 +23,8 @@ public class Test {
         name = "tester";
         age = 19;
     }
+
+   
 
     public Test(String name, int age){
         this.name = name;
@@ -44,6 +47,13 @@ public class Test {
     
     public void setAge(int n){
         this.age = n;
+    }
+
+    public static String serializeToJSON(Test t) {
+        
+        Gson gson = new Gson();
+        String p = gson.toJson(t);
+        return p;   
     }
 }
 
