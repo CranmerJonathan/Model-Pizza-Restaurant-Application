@@ -84,6 +84,8 @@ public class Order {
                 return "Baking";
             case 4:
                 return "Done";
+            case 5:
+                return "Delivering";
             default:
                 return "Delivered";
         }
@@ -105,8 +107,16 @@ public class Order {
     public String getTime() {
         switch (state) {
             case 0:
-                return "30 min.";
+                return "45 min.";
             case 1:
+                return "40 min.";
+            case 2:
+                return "-1 min.";
+            case 3:
+                return "35 min.";
+            case 4:
+                return "25 min.";
+            case 5:
                 return "15 min.";
             default:
                 return "0 min.";

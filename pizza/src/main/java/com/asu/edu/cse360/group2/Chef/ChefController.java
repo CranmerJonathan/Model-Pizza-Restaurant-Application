@@ -11,6 +11,7 @@ package com.asu.edu.cse360.group2.Chef;
 import com.asu.edu.cse360.group2.App;
 import com.asu.edu.cse360.group2.AppState;
 import com.asu.edu.cse360.group2.Order;
+import com.asu.edu.cse360.group2.OrderSort;
 import com.asu.edu.cse360.group2.Pizza;
 
 // general imports
@@ -59,7 +60,7 @@ public class ChefController {
 
     @FXML
     private TableView<Order> orders;
-    
+
     @FXML
     private TableColumn<Order, String> ordersColumn;
 
@@ -142,8 +143,11 @@ public class ChefController {
         orders.setItems(FXCollections.observableList(orderList));
 
         orders.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
-
             selectedOrder = newSelection;
+
+            if (selectedOrder == null) {
+                return;
+            }
 
             if (selectedOrder.getPizzas() != null) {
                 pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
@@ -194,8 +198,9 @@ public class ChefController {
         ArrayList<Order> newOrderForIDList = AppState.doneOrders.get(selectedOrder.getUserID());
         newOrderForIDList.remove(selectedOrder);
         orders.getItems().remove(selectedOrder); // updates table
+        pizzas.refresh();
     }
-        
+
     @FXML
     public void createPizza() {
         // Create the custom dialog.
@@ -225,15 +230,14 @@ public class ChefController {
         HBox typeButtons = new HBox(typePepperoni, typeSausage, typeCheese);
         typeButtons.setSpacing(2);
 
-         // Topping check boxes
-         CheckBox toppingMushroom = new CheckBox("Mushroom");
-         CheckBox toppingOnion = new CheckBox("Onion");
-         CheckBox toppingOlives = new CheckBox("Olives");
-         CheckBox toppingExtraCheese = new CheckBox("Extra Cheese");
-         HBox toppingButtons = new HBox(toppingMushroom, toppingOnion, toppingOlives, toppingExtraCheese);
-         toppingButtons.setSpacing(2);
+        // Topping check boxes
+        CheckBox toppingMushroom = new CheckBox("Mushroom");
+        CheckBox toppingOnion = new CheckBox("Onion");
+        CheckBox toppingOlives = new CheckBox("Olives");
+        CheckBox toppingExtraCheese = new CheckBox("Extra Cheese");
+        HBox toppingButtons = new HBox(toppingMushroom, toppingOnion, toppingOlives, toppingExtraCheese);
+        toppingButtons.setSpacing(2);
 
-         
         // Gridpane updates
         gridPane.add(typeLabel, 0, 0);
         gridPane.add(typeButtons, 1, 0);
@@ -279,33 +283,32 @@ public class ChefController {
             return null;
         });
 
-
         Optional<Pair<Pizza.Types, ArrayList<Pizza.Toppings>>> result = dialog.showAndWait();
         result.ifPresent(pair -> {
 
-            //add pizza to local list of pizzas based on already selected order
+            // add pizza to local list of pizzas based on already selected order
             pizzaList.add(new Pizza(pair.getKey(), pair.getValue()));
 
-            //set selected order pizzas to new list of pizzas
+            // set selected order pizzas to new list of pizzas
             selectedOrder.setPizzas(pizzaList);
 
-            //create new order object to replace exisiting order in state hashmap with put()
+            // create new order object to replace exisiting order in state hashmap with
+            // put()
             ArrayList<Order> orders = new ArrayList<Order>();
 
-            //add updated order to local order tableview data (orders)
+            // add updated order to local order tableview data (orders)
             orders.add(selectedOrder);
 
-            //update list of pizzas in local pizza tableview data (pizzas)
+            // update list of pizzas in local pizza tableview data (pizzas)
             pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
 
-            //update Appstate approvedOrders hash table
+            // update Appstate approvedOrders hash table
             AppState.approvedOrders.put(selectedOrder.getUserID(), orders);
 
-            //refresh table column with current list of pizza objects
+            // refresh table column with current list of pizza objects
             pizzas.refresh();
         });
     }
-    
 
     @FXML
     public void editPizza() {
@@ -434,14 +437,30 @@ public class ChefController {
             orders.add(selectedOrder);
             pizzas.setItems(FXCollections.observableList(selectedOrder.getPizzas()));
             AppState.approvedOrders.put(selectedOrder.getUserID(), orders);
-            
+
             int editedPizzaIndex = pizzaList.indexOf(selectedPizza);
             pizzaList.remove(editedPizzaIndex);
 
             pizzas.refresh();
         });
     }
-    
+
+    @FXML
+    private void sortOrdersByTime() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersTime();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
+        pizzas.refresh();
+    }
+
+    @FXML
+    private void sortOrdersByState() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersState();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
+        pizzas.refresh();
+    }
+
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");

@@ -45,8 +45,8 @@
                   </TableView>
                   <HBox prefHeight="0.0" prefWidth="212.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text=" Sort by Type" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Sort by Time" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" onAction="#sortOrdersByState" text=" Sort by State" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" onAction="#sortOrdersByTime" text="Sort by Time" />
                      </children>
                   </HBox>
                </children>
