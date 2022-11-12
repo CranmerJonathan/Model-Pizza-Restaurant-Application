@@ -19,17 +19,20 @@ public class Order {
     private int orderNumber;
     private double progress;
     private int userID;
+    private String userAddress;
 
     // TODO
     // define int-state mapping table
     private int state = 0;
 
-    public Order(List<Pizza> pizzas, int userID) {
+    public Order(List<Pizza> pizzas, int userID, String userAddress) {
         AppState.orderNumber += 1;
         orderNumber = AppState.orderNumber;
         this.pizzas = pizzas;
         this.progress = 0;
         this.userID = userID;
+        this.userAddress = userAddress;
+
     }
 
     // utility functions for table view
@@ -45,6 +48,10 @@ public class Order {
     // gets user ID associated with order
     public int getUserID() {
         return userID;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
     }
 
     // gets state of order
