@@ -39,6 +39,14 @@ public class Order {
     public String getName() {
         return "Order " + orderNumber;
     }
+    // used to get orderNumber in chef controller 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+    // used to get pizza array in chef controller 
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
 
     // gets progress of order (managed by chef/delivery classes)
     public double getProgress() {
@@ -76,6 +84,11 @@ public class Order {
         this.state = state;
     }
 
+    // neccessary to change an existing orders pizzas
+    public void setPizzas(List<Pizza> pizzas)
+    {
+        this.pizzas = pizzas; 
+    }
     // get estimated time for completion
     // TODO
     // update this correctly

@@ -47,7 +47,8 @@ public class AppState {
 
     // chef state
     static public class ChefState {
-
+        public static int currentOrderId;
+        public static ObservableList<Order> orderList;
     }
 
     // delivery driver state
