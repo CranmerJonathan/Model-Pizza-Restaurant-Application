@@ -60,6 +60,10 @@ public class AdminController {
 
     @FXML
     private void approve() {
+        if (selectedOrder == null) {
+            return;
+        }
+
         // add item to approved list, set order state to approved
         int ID = selectedOrder.getUserID();
         selectedOrder.setState(1);
@@ -79,6 +83,10 @@ public class AdminController {
 
     @FXML
     private void disapprove() {
+        if (selectedOrder == null) {
+            return;
+        }
+
         // update order state to disapproved
         selectedOrder.setState(2);
 

@@ -52,7 +52,7 @@ public class Order {
 
     // gets progress of order (managed by chef/delivery classes)
     public double getProgress() {
-        return progress;
+        return (((float) state) / 6.0);
     }
 
     // gets user ID associated with order
