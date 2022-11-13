@@ -162,7 +162,6 @@ public class ChefController {
         });
 
         pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
-
             selectedPizza = newSelection;
         });
 
@@ -170,22 +169,56 @@ public class ChefController {
 
     @FXML
     private void bakedStage() {
-        int ID = selectedOrder.getUserID();
-        selectedOrder.setState(3);
-        if (AppState.bakedOrders.get(ID) == null) {
-            ArrayList<Order> orders = new ArrayList<Order>();
-            orders.add(selectedOrder);
-            AppState.bakedOrders.put(ID, orders);
-        } else {
-            ArrayList<Order> orders = AppState.bakedOrders.get(ID);
-            orders.add(selectedOrder);
+        if (selectedOrder == null) {
+            return;
         }
+        selectedOrder.setState(3);
+        orders.refresh();
+        // Section removed for clarity
+        // int ID = selectedOrder.getUserID();
+        // selectedOrder.setState(3);
+        // if (AppState.bakedOrders.get(ID) == null) {
+        // ArrayList<Order> orders = new ArrayList<Order>();
+        // orders.add(selectedOrder);
+        // AppState.bakedOrders.put(ID, orders);
+        // } else {
+        // ArrayList<Order> orders = AppState.bakedOrders.get(ID);
+        // orders.add(selectedOrder);
+        // }
     }
 
     @FXML
     private void doneStage() {
+        if (selectedOrder == null) {
+            return;
+        }
+
         int ID = selectedOrder.getUserID();
+
+        // if no delivery requested
+        if (selectedOrder.getUserAddress().compareTo("") == 0) {
+            selectedOrder.setState(6);
+
+            // we need to remove from approved orders app state and add to completed orders
+            // app state
+            AppState.approvedOrders.get(ID).remove(selectedOrder);
+            if (AppState.completeOrders.get(ID) == null) {
+                ArrayList<Order> orders = new ArrayList<Order>();
+                orders.add(selectedOrder);
+                AppState.completeOrders.put(ID, orders);
+            } else {
+                AppState.completeOrders.get(ID).add(selectedOrder);
+            }
+
+            orders.getItems().remove(selectedOrder);
+            pizzas.refresh();
+            return;
+        }
+
         selectedOrder.setState(4);
+
+        // we need to remove from approved orders app state and add to completed orders
+        AppState.approvedOrders.get(ID).remove(selectedOrder);
         if (AppState.doneOrders.get(ID) == null) {
             ArrayList<Order> orders = new ArrayList<Order>();
             orders.add(selectedOrder);
@@ -195,8 +228,9 @@ public class ChefController {
             orders.add(selectedOrder);
         }
 
-        ArrayList<Order> newOrderForIDList = AppState.doneOrders.get(selectedOrder.getUserID());
-        newOrderForIDList.remove(selectedOrder);
+        // ArrayList<Order> newOrderForIDList =
+        // AppState.doneOrders.get(selectedOrder.getUserID());
+        // newOrderForIDList.remove(selectedOrder);
         orders.getItems().remove(selectedOrder); // updates table
         pizzas.refresh();
     }

@@ -11,7 +11,7 @@ package com.asu.edu.cse360.group2.Admin;
 import com.asu.edu.cse360.group2.App;
 import com.asu.edu.cse360.group2.AppState;
 import com.asu.edu.cse360.group2.Order;
-import com.asu.edu.cse360.group2.Pizza;
+import com.asu.edu.cse360.group2.OrderSort;
 
 // general imports
 import java.io.IOException;
@@ -85,5 +85,19 @@ public class AdminController {
         ArrayList<Order> newOrderForIDList = AppState.newOrders.get(selectedOrder.getUserID());
         newOrderForIDList.remove(selectedOrder);
         orders.getItems().remove(selectedOrder); // updates table
+    }
+
+    @FXML
+    private void sortByTime() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersTime();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
+    }
+
+    @FXML
+    private void sortBySize() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersSize();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
     }
 }

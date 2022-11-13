@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -42,7 +42,7 @@
                <children>
                   <TableView fx:id="orders" prefHeight="420.0" prefWidth="235.0">
                      <columns>
-                        <TableColumn editable="false" prefWidth="210.79999542236328" text="Orders" />
+                        <TableColumn fx:id="ordersColumn" editable="false" prefWidth="210.79999542236328" text="Orders" />
                      </columns>
                   </TableView>
                   <HBox prefHeight="0.0" prefWidth="212.0">
@@ -63,15 +63,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="267.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@Images/map.PNG"/>
-                     </image>
-                  </ImageView>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <buttons>
+                      <Button mnemonicParsing="false" text="Delivering" onAction="#setDelivering" />
+                      <Button mnemonicParsing="false" text="Delivered" onAction="#setDelivered" />
+                    </buttons>
+                  </ButtonBar>
+                  <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: ">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
                </children>
             </GridPane>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#logout"/>
+      <Button mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>

@@ -58,16 +58,13 @@ public class PaymentController {
 
     @FXML
     public void addressAccess() {
-        if (addressBox.isSelected() == false)
-        {
+        if (addressBox.isSelected() == false) {
             addressField.setEditable(false);
-        }
-        else {
+        } else {
             addressField.setEditable(true);
         }
-        
+
     }
-    
 
     @FXML
     public void cancel() throws IOException {
@@ -96,18 +93,19 @@ public class PaymentController {
 
         AppState.CustomerState.currentUserID = ID;
 
-
         boolean successTwo = true;
-        if (addressField.getText().length() > 45){
+        if (addressField.getText().length() > 45) {
             successTwo = false;
         }
         String address = "";
-        address = addressField.getText();
+        if (addressBox.isSelected()) {
+            address = addressField.getText();
 
-        if (!successTwo) {
-            Alert alert = new Alert(AlertType.ERROR, "Invalid Address");
-            alert.show();
-            return;
+            if (!successTwo) {
+                Alert alert = new Alert(AlertType.ERROR, "Invalid Address");
+                alert.show();
+                return;
+            }
         }
 
         AppState.CustomerState.currentAddress = address;
@@ -115,7 +113,8 @@ public class PaymentController {
         // cache order in order database, set app state pizzaList to null
         // this copies by reference, which is fine, because we won't use the old list
         // anymore anyways
-        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID, AppState.CustomerState.currentAddress);
+        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID,
+                AppState.CustomerState.currentAddress);
         if (AppState.orders.get(ID) == null) {
             ArrayList<Order> orders = new ArrayList<Order>();
             orders.add(order);

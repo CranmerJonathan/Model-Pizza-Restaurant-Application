@@ -27,19 +27,29 @@ public class AppState {
     public static Hashtable<Integer, ArrayList<Order>> orders = new Hashtable<Integer, ArrayList<Order>>();
 
     // this stores all newly placed unapproved orders for each customer
+    // admin viewable orders
     public static Hashtable<Integer, ArrayList<Order>> newOrders = new Hashtable<Integer, ArrayList<Order>>();
 
     // this stores all approved orders for each customer (managed by the chef)
+    // chef viewable orders
     public static Hashtable<Integer, ArrayList<Order>> approvedOrders = new Hashtable<Integer, ArrayList<Order>>();
 
     // this stores all orders ready for delivery (managed by the delivery driver)
-    public static Hashtable<Integer, ArrayList<Order>> deliverableOrders = new Hashtable<Integer, ArrayList<Order>>();
+    // deprecated in place of doneOrders (see below)
+    // public static Hashtable<Integer, ArrayList<Order>> deliverableOrders = new
+    // Hashtable<Integer, ArrayList<Order>>();
 
     // this stores all orders that are being baked (managed by the chef)
-    public static Hashtable<Integer, ArrayList<Order>> bakedOrders = new Hashtable<Integer, ArrayList<Order>>();
+    // deprecated in place of single state updates
+    // public static Hashtable<Integer, ArrayList<Order>> bakedOrders = new
+    // Hashtable<Integer, ArrayList<Order>>();
 
-    //this stores all orders that are done being baked (managed by the chef)
+    // this stores all orders that are done being baked (managed by delivery driver)
+    // delivery viewable orders
     public static Hashtable<Integer, ArrayList<Order>> doneOrders = new Hashtable<Integer, ArrayList<Order>>();
+
+    // this stores all completed orders (managed by chef)
+    public static Hashtable<Integer, ArrayList<Order>> completeOrders = new Hashtable<Integer, ArrayList<Order>>();
 
     // order number
     public static int orderNumber = 0;

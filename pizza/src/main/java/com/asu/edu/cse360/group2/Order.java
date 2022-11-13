@@ -37,7 +37,7 @@ public class Order {
 
     // utility functions for table view
     public String getName() {
-        return "Order " + orderNumber;
+        return "Order " + orderNumber + "; " + getState();
     }
 
     // used to get orderNumber in chef controller
@@ -83,9 +83,11 @@ public class Order {
             case 3:
                 return "Baking";
             case 4:
-                return "Done";
+                return "Done, waiting for delivery";
             case 5:
                 return "Delivering";
+            case 6:
+                return "Done, ready for pickup";
             default:
                 return "Delivered";
         }
@@ -118,6 +120,8 @@ public class Order {
                 return "25 min.";
             case 5:
                 return "15 min.";
+            case 6:
+                return "0 min.";
             default:
                 return "0 min.";
         }
