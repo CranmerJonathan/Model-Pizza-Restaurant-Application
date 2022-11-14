@@ -81,33 +81,50 @@ public class App extends Application {
     
         public static void main(String[] args) {
             
-            Test t = new Test();
-            System.out.println(t);
-            try{
-                ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
-                output.writeObject(t);
-                output.close();
+            
+            
+            ArrayList<Toppings> list = new ArrayList<>();
+            list.add(Toppings.EXTRA_CHEESE);
+            
+            Pizza p = new Pizza(Types.CHEESE, list);
+            Pizza.serialize(p);
+            
+
+            /*
+            Pizza pTwo = new Pizza(null, null);
+            Pizza.deserialize(pTwo);
+
+            System.out.println(pTwo.getType());
+            System.out.println(pTwo.getToppings());
+            System.out.println("Done with f(n)");
+             */
+
+            /*
+             * try{
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
+            output.writeObject(pizza);
+            output.close();
             }
             catch(IOException ioe){
                 System.err.println("Error saving to file");
             }
-            //saving da data from "cloud" 
-            Test t2 = null;
-
             try{
-                ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
-                t2 = (Test) input.readObject();
-                input.close();
-            }
-            catch(IOException ioe){
-                System.err.println("Error opening to file");
-            }
-            catch(ClassNotFoundException cnfe){
-                System.err.println("Object read is not of the specified object that we're attempting to save to");
-            }
-            System.out.println(t2.getAge());
-            System.out.println(t2.getName());
-    }
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
+            p = (Pizza) input.readObject();
+            input.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error opening to file");
+        }
+        catch(ClassNotFoundException cnfe){
+            System.err.println("Object read is not of the specified object that we're attempting to save to");
+        }
+            
+            */
+
+            
+             
+        }
   
 
 

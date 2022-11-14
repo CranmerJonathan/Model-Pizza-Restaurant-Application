@@ -13,8 +13,9 @@ import com.asu.edu.cse360.group2.AppState;
 // general imports
 import java.util.List;
 import java.net.URL;
+import java.io.*;
 
-public class Order {
+public class Order implements Serializable{
     private List<Pizza> pizzas;
     private int orderNumber;
     private double progress;
@@ -85,13 +86,32 @@ public class Order {
 
     // TODO
     // accepts a order object and serializes it in JSON format returned as a string
-    public static String serializeToJSON(Pizza pizza) {
-        return null;
+    public static void serialize(String fileName, Order order) {
+        try{
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
+            output.writeObject(order);
+            output.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error saving to file");
+        }
+        
     }
 
     // TODO
     // accepts a file path (URL) and deserializes it and returns an Order object
-    public static Order deserializeFromJSON(URL url) {
-        return null;
+    public static void deserialize(String fileName, Order order) {
+        try{
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("pizza.dat"));
+            order = (Order) input.readObject();
+            input.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error opening to file");
+        }
+        catch(ClassNotFoundException cnfe){
+            System.err.println("Object read is not of the specified object that we're attempting to save to");
+        }
+        
     }
 }

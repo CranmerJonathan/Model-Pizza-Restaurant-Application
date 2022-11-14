@@ -17,8 +17,7 @@ import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.net.URL;
 
 
@@ -99,17 +98,33 @@ public class Pizza implements Serializable{
 
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
-    public static String serialization(Pizza pizza) {
-        Gson gson = new Gson();
-        String p = gson.toJson(pizza);
+    public static void serialize(Pizza pizza) {
+        try{
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
+            output.writeObject(pizza);
+            output.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error saving to file");
+        }
         
-        return p;   
     }
 
     // TODO
     // accepts a file path (URL) and deserializes it and returns a Pizza object
-    public static Pizza deserializeFromJSON(String string) {
-        return null;
+    public static void deserialize(Pizza p) {
+        try{
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
+            p = (Pizza) input.readObject();
+            input.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error opening to file");
+        }
+        catch(ClassNotFoundException cnfe){
+            System.err.println("Object read is not of the specified object that we're attempting to save to");
+        }
+        
     }
 
     
