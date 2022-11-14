@@ -52,7 +52,7 @@ public class OverviewController {
         }
 
         orders.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
-            stage.setText(newSelection.getName() + " stage:");
+            stage.setText("Order " + newSelection.getOrderNumber());
             state.setText(newSelection.getState());
             estArrival.setText("Estimated arrival: " + newSelection.getTime());
             progress.setProgress(newSelection.getProgress());

@@ -11,7 +11,7 @@ package com.asu.edu.cse360.group2.Admin;
 import com.asu.edu.cse360.group2.App;
 import com.asu.edu.cse360.group2.AppState;
 import com.asu.edu.cse360.group2.Order;
-import com.asu.edu.cse360.group2.Pizza;
+import com.asu.edu.cse360.group2.OrderSort;
 
 // general imports
 import java.io.IOException;
@@ -60,6 +60,10 @@ public class AdminController {
 
     @FXML
     private void approve() {
+        if (selectedOrder == null) {
+            return;
+        }
+
         // add item to approved list, set order state to approved
         int ID = selectedOrder.getUserID();
         selectedOrder.setState(1);
@@ -79,11 +83,29 @@ public class AdminController {
 
     @FXML
     private void disapprove() {
+        if (selectedOrder == null) {
+            return;
+        }
+
         // update order state to disapproved
         selectedOrder.setState(2);
 
         ArrayList<Order> newOrderForIDList = AppState.newOrders.get(selectedOrder.getUserID());
         newOrderForIDList.remove(selectedOrder);
         orders.getItems().remove(selectedOrder); // updates table
+    }
+
+    @FXML
+    private void sortByTime() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersTime();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
+    }
+
+    @FXML
+    private void sortBySize() {
+        OrderSort sorter = new OrderSort(new ArrayList<Order>(orders.getItems()));
+        sorter.sortOrdersSize();
+        orders.setItems(FXCollections.observableList(sorter.getOrders()));
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.asu.edu.cse360.group2.Chef.ChefController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Chef.ChefController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.5999755859375" minWidth="10.0" prefWidth="53.99999237060547" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.9999816894531" minWidth="10.0" prefWidth="433.9999816894531" />
@@ -45,20 +45,27 @@
                   </TableView>
                   <HBox prefHeight="0.0" prefWidth="212.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text=" Sort by Type" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Sort by Time" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" onAction="#sortOrdersByState" text=" Sort by State" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" onAction="#sortOrdersByTime" text="Sort by Time" />
                      </children>
                   </HBox>
                </children>
             </VBox>
             <Pane prefHeight="445.0" prefWidth="224.0">
                <children>
-                  <Button layoutX="74.0" layoutY="146.0" mnemonicParsing="false" text="Edit Orders" />
-                  <Button layoutX="67.0" layoutY="188.0" mnemonicParsing="false" text="Create Orders" />
+                  <Button layoutX="105.0" layoutY="400.0" mnemonicParsing="false" onAction="#bakedStage" text="Baking" />
+                  <Button layoutX="60.0" layoutY="400.0" mnemonicParsing="false" onAction="#doneStage" text="Done" />
+                  <Button layoutX="77.0" layoutY="331.0" mnemonicParsing="false" onAction="#editPizza" text="Edit Pizza" />
+                  <Button layoutX="67.0" layoutY="373.0" mnemonicParsing="false" onAction="#createPizza" text="Create Pizza" />
+                  <TableView fx:id="pizzas" layoutX="12.0" prefHeight="306.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="pizzaColumn" prefWidth="198.80000591278076" text="Pizzas" />
+                    </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#logout"/>
+      <Button mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>

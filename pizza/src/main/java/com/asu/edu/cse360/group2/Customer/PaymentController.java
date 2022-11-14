@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Alert.AlertType;
 
 public class PaymentController {
@@ -37,6 +38,12 @@ public class PaymentController {
     private TextField asuField;
 
     @FXML
+    private TextField addressField;
+
+    @FXML
+    private CheckBox addressBox;
+
+    @FXML
     public void initialize() {
         // this function is needed to load elements into the table when the view loads
         pizzaColumn.setCellValueFactory(new PropertyValueFactory<Pizza, String>("name"));
@@ -45,6 +52,18 @@ public class PaymentController {
         pizzas.getSelectionModel().selectedItemProperty().addListener((observableList, oldSelection, newSelection) -> {
             // run on table element selection
         });
+
+        addressField.setEditable(false);
+    }
+
+    @FXML
+    public void addressAccess() {
+        if (addressBox.isSelected() == false) {
+            addressField.setEditable(false);
+        } else {
+            addressField.setEditable(true);
+        }
+
     }
 
     @FXML
@@ -74,10 +93,28 @@ public class PaymentController {
 
         AppState.CustomerState.currentUserID = ID;
 
+        boolean successTwo = true;
+        if (addressField.getText().length() > 45) {
+            successTwo = false;
+        }
+        String address = "";
+        if (addressBox.isSelected()) {
+            address = addressField.getText();
+
+            if (!successTwo) {
+                Alert alert = new Alert(AlertType.ERROR, "Invalid Address");
+                alert.show();
+                return;
+            }
+        }
+
+        AppState.CustomerState.currentAddress = address;
+
         // cache order in order database, set app state pizzaList to null
         // this copies by reference, which is fine, because we won't use the old list
         // anymore anyways
-        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID);
+        Order order = new Order(new ArrayList<>(pizzas.getItems()), AppState.CustomerState.currentUserID,
+                AppState.CustomerState.currentAddress);
         if (AppState.orders.get(ID) == null) {
             ArrayList<Order> orders = new ArrayList<Order>();
             orders.add(order);

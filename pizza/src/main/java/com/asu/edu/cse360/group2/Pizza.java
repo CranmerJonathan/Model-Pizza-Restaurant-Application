@@ -8,18 +8,12 @@
 package com.asu.edu.cse360.group2;
 
 // general imports
-
-
 import java.util.ArrayList;
-
-
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-
 import java.io.*;
 import java.net.URL;
-
 
 public class Pizza implements Serializable{
     // type of pizza
@@ -107,7 +101,6 @@ public class Pizza implements Serializable{
         catch(IOException ioe){
             System.err.println("Error saving to file");
         }
-        
     }
 
     
@@ -124,8 +117,5 @@ public class Pizza implements Serializable{
         catch(ClassNotFoundException cnfe){
             System.err.println("Object read is not of the specified object that we're attempting to save to");
         }
-        
     }
-
-    
 }
