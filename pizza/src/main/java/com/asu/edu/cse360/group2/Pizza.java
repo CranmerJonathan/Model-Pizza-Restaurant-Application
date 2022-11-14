@@ -98,9 +98,9 @@ public class Pizza implements Serializable{
 
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
-    public static void serialize(Pizza pizza) {
+    public static void serialize(String fileName, Pizza pizza) {
         try{
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
             output.writeObject(pizza);
             output.close();
         }
@@ -110,11 +110,11 @@ public class Pizza implements Serializable{
         
     }
 
-    // TODO
+    
     // accepts a file path (URL) and deserializes it and returns a Pizza object
-    public static void deserialize(Pizza p) {
+    public static void deserialize(String fileName, Pizza p) {
         try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
             p = (Pizza) input.readObject();
             input.close();
         }

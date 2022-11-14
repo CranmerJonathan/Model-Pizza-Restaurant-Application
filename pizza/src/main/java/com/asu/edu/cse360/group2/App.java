@@ -82,25 +82,10 @@ public class App extends Application {
         public static void main(String[] args) {
             
             
-            
-            ArrayList<Toppings> list = new ArrayList<>();
-            list.add(Toppings.EXTRA_CHEESE);
-            
-            Pizza p = new Pizza(Types.CHEESE, list);
-            Pizza.serialize(p);
+           launch();
             
 
-            /*
-            Pizza pTwo = new Pizza(null, null);
-            Pizza.deserialize(pTwo);
-
-            System.out.println(pTwo.getType());
-            System.out.println(pTwo.getToppings());
-            System.out.println("Done with f(n)");
-             */
-
-            /*
-             * try{
+            /* try{
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
             output.writeObject(pizza);
             output.close();
@@ -112,13 +97,13 @@ public class App extends Application {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
             p = (Pizza) input.readObject();
             input.close();
-        }
-        catch(IOException ioe){
-            System.err.println("Error opening to file");
-        }
-        catch(ClassNotFoundException cnfe){
-            System.err.println("Object read is not of the specified object that we're attempting to save to");
-        }
+            }
+            catch(IOException ioe){
+                System.err.println("Error opening to file");
+            }
+            catch(ClassNotFoundException cnfe){
+                System.err.println("Object read is not of the specified object that we're attempting to save to");
+            }
             
             */
 

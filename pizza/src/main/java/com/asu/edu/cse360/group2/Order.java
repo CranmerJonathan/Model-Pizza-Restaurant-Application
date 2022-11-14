@@ -84,7 +84,6 @@ public class Order implements Serializable{
         }
     }
 
-    // TODO
     // accepts a order object and serializes it in JSON format returned as a string
     public static void serialize(String fileName, Order order) {
         try{
@@ -98,7 +97,7 @@ public class Order implements Serializable{
         
     }
 
-    // TODO
+    
     // accepts a file path (URL) and deserializes it and returns an Order object
     public static void deserialize(String fileName, Order order) {
         try{
