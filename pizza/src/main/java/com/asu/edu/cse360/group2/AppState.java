@@ -26,47 +26,17 @@ public class AppState implements Serializable {
 
     // this stores all orders for each customer
     public static Hashtable<Integer, ArrayList<Order>> orders = new Hashtable<Integer, ArrayList<Order>>();
-    try{
-        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("order.dat"));
-        output.writeObject(AppState.orders);
-        output.close();
-    }
-    catch(IOException ioe){
-        System.err.println("Error saving to file");
-    }
 
     // this stores all newly placed unapproved orders for each customer
     public static Hashtable<Integer, ArrayList<Order>> newOrders = new Hashtable<Integer, ArrayList<Order>>();
     
-    try{
-        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("newOrders.dat"));
-        output.writeObject(AppState.newOrders);
-        output.close();
-    }
-    catch(IOException ioeTwo){
-        System.err.println("Error saving to file");
-    }
 
     // this stores all approved orders for each customer (managed by the chef)
     public static Hashtable<Integer, ArrayList<Order>> approvedOrders = new Hashtable<Integer, ArrayList<Order>>();
-    try{
-        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("approved.dat"));
-        output.writeObject(AppState.approvedOrders);
-        output.close();
-    }
-    catch(IOException ioeThree){
-        System.err.println("Error saving to file");
-    }
+   
     // this stores all orders ready for delivery (managed by the delivery driver)
     public static Hashtable<Integer, ArrayList<Order>> deliverableOrders = new Hashtable<Integer, ArrayList<Order>>();
-    try{
-        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("deliverable.dat"));
-        output.writeObject(AppState.deliverableOrders);
-        output.close();
-    }
-    catch(IOException ioeFour){
-        System.err.println("Error saving to file");
-    }
+    
 
     // order number
     public static int orderNumber = 0;

@@ -80,34 +80,7 @@ public class App extends Application {
      */
     
         public static void main(String[] args) {
-            
-            
            launch();
-            
-
-            /* try{
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.dat"));
-            output.writeObject(pizza);
-            output.close();
-            }
-            catch(IOException ioe){
-                System.err.println("Error saving to file");
-            }
-            try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("test.dat"));
-            p = (Pizza) input.readObject();
-            input.close();
-            }
-            catch(IOException ioe){
-                System.err.println("Error opening to file");
-            }
-            catch(ClassNotFoundException cnfe){
-                System.err.println("Object read is not of the specified object that we're attempting to save to");
-            }
-            
-            */
-
-            
              
         }
   
