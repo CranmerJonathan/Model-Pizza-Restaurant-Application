@@ -10,9 +10,12 @@ package com.asu.edu.cse360.group2;
 // general imports
 import java.util.ArrayList;
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.*;
 import java.net.URL;
 
-public class Pizza {
+public class Pizza implements Serializable{
     // type of pizza
     public static enum Types {
         PEPPERONI, SAUSAGE, CHEESE
@@ -89,15 +92,30 @@ public class Pizza {
 
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
-    public static String serializeToJSON(Pizza pizza) {
-        Gson gson = new Gson();
-        String p = gson.toJson(pizza);
-        return p;
+    public static void serialize(String fileName, Pizza pizza) {
+        try{
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
+            output.writeObject(pizza);
+            output.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error saving to file");
+        }
     }
 
-    // TODO
+    
     // accepts a file path (URL) and deserializes it and returns a Pizza object
-    public static Pizza deserializeFromJSON(URL url) {
-        return null;
+    public static void deserialize(String fileName, Pizza p) {
+        try{
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
+            p = (Pizza) input.readObject();
+            input.close();
+        }
+        catch(IOException ioe){
+            System.err.println("Error opening to file");
+        }
+        catch(ClassNotFoundException cnfe){
+            System.err.println("Object read is not of the specified object that we're attempting to save to");
+        }
     }
 }
