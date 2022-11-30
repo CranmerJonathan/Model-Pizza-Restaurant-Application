@@ -76,7 +76,33 @@ public class App extends Application {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         launch();
+        /*        ArrayList<Pizza> list = new ArrayList<>();
+        ArrayList<Toppings> toppings = new ArrayList<>();
+        toppings.add(Toppings.MUSHROOM);
+        Pizza e = new Pizza(Types.CHEESE, toppings);
+        list.add(e);
+    
+        Order o = new Order(list, 1234567890, "3333 Temp Addr");
+        File file = new File("testOrd.bin");
+
         
+        System.out.println(o.getOrderNumber());
+
+        Order.writeOrdertoFile(o, file);
+
+        System.out.println("PhaseOne Fin.");
+        
+        
+                
+        
+        Order n = Order.readOrderFromFile(file);
+        System.out.println(n.getOrderNumber());
+
+        System.out.println("fin.");
+ */
+
+        
+
     }
 
 }

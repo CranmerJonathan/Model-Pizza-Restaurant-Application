@@ -15,7 +15,7 @@ import java.util.List;
 import java.net.URL;
 import java.io.*;
 
-public class Order {
+public class Order implements Serializable {
     private List<Pizza> pizzas;
     private int orderNumber;
     private double progress;
