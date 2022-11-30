@@ -13,6 +13,7 @@ import com.asu.edu.cse360.group2.AppState;
 // general imports
 import java.util.List;
 import java.net.URL;
+import java.io.*;
 
 public class Order {
     private List<Pizza> pizzas;
@@ -132,13 +133,21 @@ public class Order {
 
     // TODO
     // accepts a order object and serializes it in JSON format returned as a string
-    public static String serializeToJSON(Pizza pizza) {
-        return null;
+    public static void writeOrdertoFile(Order o, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(o);
+            oos.flush();
+        }
+        
     }
 
-    // TODO
-    // accepts a file path (URL) and deserializes it and returns an Order object
-    public static Order deserializeFromJSON(URL url) {
-        return null;
+    public static Order readOrderFromFile(File file) throws IOException, ClassNotFoundException{
+        Order o = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            o = (Order) ois.readObject();
+        }
+        return o;
     }
 }

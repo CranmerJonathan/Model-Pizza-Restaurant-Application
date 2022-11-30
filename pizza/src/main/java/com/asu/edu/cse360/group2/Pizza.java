@@ -11,8 +11,9 @@ package com.asu.edu.cse360.group2;
 import java.util.ArrayList;
 import com.google.gson.*;
 import java.net.URL;
+import java.io.*;
 
-public class Pizza {
+public class Pizza implements Serializable {
     // type of pizza
     public static enum Types {
         PEPPERONI, SAUSAGE, CHEESE
@@ -89,15 +90,21 @@ public class Pizza {
 
     // TODO
     // accepts a pizza object and serializes it in JSON format returned as a string
-    public static String serializeToJSON(Pizza pizza) {
-        Gson gson = new Gson();
-        String p = gson.toJson(pizza);
-        return p;
+    public static void writePizzaToFile(Pizza p, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(p);
+            oos.flush();
+        }
+        
     }
 
-    // TODO
-    // accepts a file path (URL) and deserializes it and returns a Pizza object
-    public static Pizza deserializeFromJSON(URL url) {
-        return null;
+    public static Pizza readPizzaFromFile(File file) throws IOException, ClassNotFoundException{
+        Pizza p = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            p = (Pizza) ois.readObject();
+        }
+        return p;
     }
 }

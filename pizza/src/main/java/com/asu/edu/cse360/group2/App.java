@@ -13,8 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+ 
 
 import java.io.IOException;
+import java.io.*;
 
 import java.util.ArrayList;
 
@@ -66,14 +68,15 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
     /**
      * Main execution of the Pizza application
      * 
      * @param args System args
+     * @throws IOException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         launch();
+        
     }
 
 }

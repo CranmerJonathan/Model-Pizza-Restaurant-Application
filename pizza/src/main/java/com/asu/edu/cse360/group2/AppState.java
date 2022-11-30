@@ -13,13 +13,14 @@ import com.asu.edu.cse360.group2.Pizza;
 // general imports
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.io.*;
 import java.net.URL;
 import java.util.Set;
 
 // javafx
 import javafx.collections.ObservableList;
 
-public class AppState {
+public class AppState implements Serializable {
     // global state variables
     // hash table stores customer ASU ID, order list pairs
 
@@ -72,15 +73,21 @@ public class AppState {
 
     }
 
-    // TODO
-    // serializes static state into JSON format returned as a string
-    public static String serializeToJSON() {
-        return null;
+    public static void writeAppstateToFile(AppState A, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(A);
+            oos.flush();
+        }
+        
     }
 
-    // TODO
-    // accepts a file path (URL) and deserializes it and defines static state
-    public static void deserializeFromJSON(URL url) {
-        return;
+    public static AppState readAppstateFromFile(File file) throws IOException, ClassNotFoundException{
+        AppState a = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            a = (AppState) ois.readObject();
+        }
+        return a;
     }
 }
