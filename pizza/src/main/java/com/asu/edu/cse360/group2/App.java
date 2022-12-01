@@ -49,7 +49,7 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("customerhome"), 600, 600);
+        scene = new Scene(loadFXML("customerhome"), 640, 480);
         stage.setTitle("Sun Devil Pizza");
         stage.getIcons().add(new Image(App.class.getResource("Images/pitchfork.png").toString()));
         stage.setScene(scene);
@@ -84,13 +84,10 @@ public class App extends Application {
      * 
      * @param args System args
      */
-    
-        public static void main(String[] args) {
-           launch();
-             
-        }
-  
 
+    public static void main(String[] args) {
+        launch();
 
-    
+    }
+
 }
