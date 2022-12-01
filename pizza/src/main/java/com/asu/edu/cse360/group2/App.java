@@ -13,12 +13,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+ 
 
 import com.google.gson.*;
 import java.io.Console;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.*;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -29,6 +31,7 @@ import com.asu.edu.cse360.group2.Pizza.Toppings;
 import com.asu.edu.cse360.group2.Pizza.Types;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 //import com.asu.edu.cse360.group2.Pizza;
 import com.asu.edu.cse360.group2.Pizza.Toppings;
@@ -79,15 +82,85 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public static void writeTableToFile(Hashtable h, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(h);
+            oos.flush();
+        }
+        
+    }
+
+    public static Hashtable readTableFromFile(File file) throws IOException, ClassNotFoundException{
+        Hashtable hashtable = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            hashtable = (Hashtable) ois.readObject();
+        }
+        return hashtable;
+    }
+
+
     /**
      * Main execution of the Pizza application
      * 
      * @param args System args
+     * @throws IOException
      */
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        
+        
+        File ordersFile = new File("orders.bin");
+        File newOrdersFile = new File("newOrders.bin");
+        File approveOrdersFile = new File("approveOrders.bin");
+        File doneOrdersfFile = new File("doneOrders.bin");
+        File compFile = new File("completeOrders.bin");
 
-    public static void main(String[] args) {
+        
+        AppState.orders = readTableFromFile(ordersFile);
+        AppState.newOrders = readTableFromFile(newOrdersFile);
+        AppState.approvedOrders = readTableFromFile(approveOrdersFile);
+        AppState.doneOrders = readTableFromFile(doneOrdersfFile);
+        AppState.completeOrders = readTableFromFile(compFile);
+
+
         launch();
+        
+        writeTableToFile(AppState.orders, ordersFile);
+        writeTableToFile(AppState.newOrders, newOrdersFile);
+        writeTableToFile(AppState.approvedOrders, approveOrdersFile);
+        writeTableToFile(AppState.doneOrders, doneOrdersfFile);
+        writeTableToFile(AppState.completeOrders, compFile);
+        
 
+                
+
+        
+        
+        /*ArrayList<Pizza> list = new ArrayList<>();
+        ArrayList<Toppings> toppings = new ArrayList<>();
+        toppings.add(Toppings.MUSHROOM);
+        Pizza e = new Pizza(Types.CHEESE, toppings);
+        list.add(e);
+    
+        Order o = new Order(list, 1234567890, "3333 Temp Addr");
+        File file = new File("testOrd.bin");
+
+        
+        System.out.println(o.getOrderNumber());
+
+        Order.writeOrdertoFile(o, file);
+
+        System.out.println("PhaseOne Fin.");
+        
+        
+                
+        
+        Order n = Order.readOrderFromFile(file);
+        System.out.println(n.getOrderNumber());
+
+        System.out.println("fin.");
+ */
     }
 
 }

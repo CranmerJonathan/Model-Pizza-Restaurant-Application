@@ -74,34 +74,21 @@ public class AppState implements Serializable {
 
     }
 
-    // TODO
-    // serializes static state into JSON format returned as a string
-    public static void serialize(String fileName, Order order) {
-        try{
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
-            output.writeObject(order);
-            output.close();
-        }
-        catch(IOException ioe){
-            System.err.println("Error saving to file");
+    public static void writeAppstateToFile(AppState A, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(A);
+            oos.flush();
         }
         
     }
 
-    
-    // accepts a file path (URL) and deserializes it and returns an Order object
-    public static void deserialize(String fileName, Order order) {
-        try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("pizza.dat"));
-            order = (Order) input.readObject();
-            input.close();
+    public static AppState readAppstateFromFile(File file) throws IOException, ClassNotFoundException{
+        AppState a = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            a = (AppState) ois.readObject();
         }
-        catch(IOException ioe){
-            System.err.println("Error opening to file");
-        }
-        catch(ClassNotFoundException cnfe){
-            System.err.println("Object read is not of the specified object that we're attempting to save to");
-        }
-        
+        return a;
     }
 }

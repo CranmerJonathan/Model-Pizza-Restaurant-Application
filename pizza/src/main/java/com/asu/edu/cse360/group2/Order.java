@@ -15,7 +15,7 @@ import java.util.List;
 import java.net.URL;
 import java.io.*;
 
-public class Order implements Serializable{
+public class Order implements Serializable {
     private List<Pizza> pizzas;
     private int orderNumber;
     private double progress;
@@ -132,32 +132,21 @@ public class Order implements Serializable{
     }
 
     // accepts a order object and serializes it in JSON format returned as a string
-    public static void serialize(String fileName, Order order) {
-        try{
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
-            output.writeObject(order);
-            output.close();
-        }
-        catch(IOException ioe){
-            System.err.println("Error saving to file");
+    public static void writeOrdertoFile(Order o, File file) throws IOException {
+        try(FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(o);
+            oos.flush();
         }
         
     }
 
-    
-    // accepts a file path (URL) and deserializes it and returns an Order object
-    public static void deserialize(String fileName, Order order) {
-        try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("pizza.dat"));
-            order = (Order) input.readObject();
-            input.close();
+    public static Order readOrderFromFile(File file) throws IOException, ClassNotFoundException{
+        Order o = null;
+        try(FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis)){
+            o = (Order) ois.readObject();
         }
-        catch(IOException ioe){
-            System.err.println("Error opening to file");
-        }
-        catch(ClassNotFoundException cnfe){
-            System.err.println("Object read is not of the specified object that we're attempting to save to");
-        }
-        
+        return o;
     }
 }
