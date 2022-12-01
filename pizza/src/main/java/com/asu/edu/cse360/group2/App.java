@@ -15,8 +15,20 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
  
 
+import com.google.gson.*;
+import java.io.Console;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.*;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import com.asu.edu.cse360.group2.Pizza.Toppings;
+import com.asu.edu.cse360.group2.Pizza.Types;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -40,7 +52,7 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("customerhome"), 600, 600);
+        scene = new Scene(loadFXML("customerhome"), 640, 480);
         stage.setTitle("Sun Devil Pizza");
         stage.getIcons().add(new Image(App.class.getResource("Images/pitchfork.png").toString()));
         stage.setScene(scene);
@@ -149,9 +161,6 @@ public class App extends Application {
 
         System.out.println("fin.");
  */
-
-        
-
     }
 
 }

@@ -131,7 +131,6 @@ public class Order implements Serializable {
         }
     }
 
-    // TODO
     // accepts a order object and serializes it in JSON format returned as a string
     public static void writeOrdertoFile(Order o, File file) throws IOException {
         try(FileOutputStream fos = new FileOutputStream(file);

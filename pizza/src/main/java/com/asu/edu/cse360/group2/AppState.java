@@ -30,11 +30,12 @@ public class AppState implements Serializable {
     // this stores all newly placed unapproved orders for each customer
     // admin viewable orders
     public static Hashtable<Integer, ArrayList<Order>> newOrders = new Hashtable<Integer, ArrayList<Order>>();
+    
 
     // this stores all approved orders for each customer (managed by the chef)
     // chef viewable orders
     public static Hashtable<Integer, ArrayList<Order>> approvedOrders = new Hashtable<Integer, ArrayList<Order>>();
-
+   
     // this stores all orders ready for delivery (managed by the delivery driver)
     // deprecated in place of doneOrders (see below)
     // public static Hashtable<Integer, ArrayList<Order>> deliverableOrders = new
