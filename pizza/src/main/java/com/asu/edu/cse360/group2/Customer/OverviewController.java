@@ -22,7 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 public class OverviewController {
@@ -33,11 +33,11 @@ public class OverviewController {
     private TableColumn<Order, String> ordersColumn;
 
     @FXML
-    private Text stage;
+    private Label stage;
     @FXML
-    private Text state;
+    private Label state;
     @FXML
-    private Text estArrival;
+    private Label estArrival;
 
     @FXML
     private ProgressBar progress;

@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asu.edu.cse360.group2.Customer.OverviewController">
    <children>
-      <Label fx:id="stage" layoutX="403.0" layoutY="240.0" text="Order #1" textFill="#621230">
+      <Label fx:id="stage" layoutX="403.0" layoutY="240.0" text="" textFill="#621230">
          <font>
             <Font size="16.0" />
          </font></Label>
@@ -34,8 +34,8 @@
          </columns>
       </TableView>
       <Button layoutX="591.0" layoutY="441.0" mnemonicParsing="false" style="-fx-background-color: #621230;" onAction="#exit" text="Exit" textFill="#ffc627" />
-      <Label fx:id="estArrival" layoutX="367.0" layoutY="342.0" text="Estimated Arrival: 45 mins" textFill="#621230" />
-      <Label fx:id="state" layoutX="390.0" layoutY="274.0" text="Processing Order" textFill="#621230" />
+      <Label fx:id="estArrival" layoutX="367.0" layoutY="342.0" text="" textFill="#621230" />
+      <Label fx:id="state" layoutX="390.0" layoutY="274.0" text="" textFill="#621230" />
       <ProgressBar fx:id="progress" layoutX="365.0" layoutY="317.0" prefHeight="18.0" prefWidth="140.0" progress="0.0" style="-fx-background-color: #FFC627; -fx-border-color: #621230;" />
    </children>
 </AnchorPane>

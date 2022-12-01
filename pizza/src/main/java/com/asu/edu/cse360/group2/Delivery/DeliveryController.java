@@ -23,6 +23,7 @@ import java.util.Set;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 
@@ -36,7 +37,7 @@ public class DeliveryController {
     private TableColumn<Order, String> ordersColumn;
 
     @FXML
-    private Text address;
+    private Label address;
 
     @FXML
     private void initialize() {
